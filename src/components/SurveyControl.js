@@ -3,6 +3,7 @@ import NewSurveyForm from './NewSurveyForm';
 import EditSurveyForm from './EditSurveyForm';
 import SurveyList from './SurveyList';
 import SurveyDetail from './SurveyDetail';
+import { connect } from 'react-redux';
 
 class SurveyControl extends Component {
   constructor(props){
@@ -114,5 +115,23 @@ class SurveyControl extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    masterSurveyList: state.masterSurveyList,
+    formVisible: state.formVisible,
+    selectedSurvey: state.selectedSurvey,
+    editing: state.editing
+  };
+}
+
+SurveyControl.propTypes = {
+  masterSurveyList: PropTypes.object,
+  formVisible: PropTypes.bool,
+  selectedSurvey: PropTypes.object,
+  editing: PropTypes.bool
+}
+
+SurveyControl = connect(mapStateToProps)(SurveyControl);
 
 export default SurveyControl;
