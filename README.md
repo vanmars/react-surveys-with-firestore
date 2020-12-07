@@ -24,7 +24,7 @@ Create an application that allows a user to complete a quiz or survey. Users sho
 
 
 ## :bookmark_tabs: Website Planning
-<img src="./public/react-surveys-plan.png">
+<img src="./public/surveys-plan.png">
 
 ## :wrench: Setup/Installation Requirements
 * Navigate to the directory in which you would like to clone this project.
