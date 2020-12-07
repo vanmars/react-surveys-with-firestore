@@ -11,16 +11,27 @@ class SurveyControl extends Component {
     };
   }
 
-
+  // Handle Main Button Click
   handleClick = () => {
   }
 
+  // Adding Survey
+
+  // Reading All Surveys
+
+  // Reading Individual Survey
+
+  // Updating Survey
+
+  // Deleting Survey
 
 
 
   render () {
     let currentlyVisibleState = null;
     let buttonText = null;
+
+    
 
     return(
       <React.Fragment>
