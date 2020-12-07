@@ -8,16 +8,6 @@ import PropTypes from 'prop-types';
 import * as a from '../actions';
 
 class SurveyControl extends Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     masterSurveyList: [],
-  //     formVisible: false,
-  //     selectedSurvey: null,
-  //     editing: false
-  //   };
-  // }
-
   // Handle Main Button Click
   handleClick = () => {
     const{ dispatch } = this.props;
@@ -33,31 +23,13 @@ class SurveyControl extends Component {
       dispatch(action);
     };
   }
-  //   if (this.state.selectedSurvey != null) {
-  //     this.setState({
-  //       formVisible: false,
-  //       selectedSurvey: null,
-  //       editing: false
-  //     });
-  //   } else {
-  //     this.setState(prevState => ({
-  //       formVisible: !prevState.formVisible,
-  //     }));
-  //   }
-  // }
 
   // Adding Survey
-  handleAddingNewSurveyToList = (newSurvey) => {
+  handleAddingNewSurveyToList = () => {
     const { dispatch } = this.props;
-    const action = a.addSurvey(newSurvey); 
+    const action = a.toggleForm();
     dispatch(action);
-    const action2 = a.toggleForm();
-    dispatch(action2);
   }
-  //   const newMasterSurveyList = this.state.masterSurveyList.concat(newSurvey);
-  //   this.setState({masterSurveyList: newMasterSurveyList,
-  //                 formVisible: false });
-  // }
 
   // Reading Individual Survey
   handleChangingSelectedSurvey = (id) => {
@@ -66,9 +38,6 @@ class SurveyControl extends Component {
     const action = a.selectSurvey(selectedSurvey);
     dispatch(action);
   }
-  //   const selectedSurvey = this.state.masterSurveyList.filter(survey => survey.id === id)[0];
-  //   this.setState({selectedSurvey: selectedSurvey});
-  // }
 
   // Updating Survey
   handleEditClick = () => {
@@ -76,8 +45,6 @@ class SurveyControl extends Component {
     const action = a.toggleEditing();
     dispatch(action);
   }
-  //   this.setState({editing: true});
-  // }
 
   handleEditingSurveyInList = (surveyToEdit) => {
     const { dispatch } = this.props;
@@ -88,15 +55,6 @@ class SurveyControl extends Component {
     const action3 = a.toggleEditing();
     dispatch(action3);
   }
-  //   const editedMasterSurveyList = this.state.masterSurveyList
-  //     .filter(survey => survey.id !== this.state.selectedSurvey.id)
-  //     .concat(surveyToEdit);
-  //   this.setState({
-  //       masterSurveyList: editedMasterSurveyList,
-  //       editing: false,
-  //       selectedSurvey: null
-  //     });
-  // }
 
   // Deleting Survey
   handleDeletingSurvey = (id) => {
@@ -106,12 +64,6 @@ class SurveyControl extends Component {
     const action2 = a.resetSurvey();
     dispatch(action2);
   }
-  //   const newMasterSurveyList = this.state.masterSurveyList.filter(survey=> survey.id !== id);
-  //   this.setState({
-  //     masterSurveyList: newMasterSurveyList,
-  //     selectedSurvey: null
-  //   });
-  // }
 
 
   render() {
