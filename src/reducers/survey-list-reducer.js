@@ -5,7 +5,7 @@ export default (state = {}, action) => {
 
   switch (type) {
     
-  case c.ADD_TICKET:
+  case c.ADD_SURVEY:
     return Object.assign({}, state, {
       [id]: {
         name: name,
@@ -18,7 +18,7 @@ export default (state = {}, action) => {
       }
     });
 
-  case c.DELETE_TICKET:
+  case c.DELETE_SURVEY:
     const newState = { ...state };
     delete newState[id];
     return newState;

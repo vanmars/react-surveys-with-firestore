@@ -4,94 +4,138 @@ import EditSurveyForm from './EditSurveyForm';
 import SurveyList from './SurveyList';
 import SurveyDetail from './SurveyDetail';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import * as a from '../actions';
 
 class SurveyControl extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      masterSurveyList: [],
-      formVisible: false,
-      selectedSurvey: null,
-      editing: false
-    };
-  }
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     masterSurveyList: [],
+  //     formVisible: false,
+  //     selectedSurvey: null,
+  //     editing: false
+  //   };
+  // }
 
   // Handle Main Button Click
   handleClick = () => {
-    if (this.state.selectedSurvey != null) {
-      this.setState({
-        formVisible: false,
-        selectedSurvey: null,
-        editing: false
-      });
+    const{ dispatch } = this.props;
+    if (this.props.selectedSurvey != null){
+      const action = a.resetSurvey();
+      dispatch(action);
+      if (this.props.editing === true) {
+        const action2 = a.toggleEditing();
+        dispatch(action2);
+      };
     } else {
-      this.setState(prevState => ({
-        formVisible: !prevState.formVisible,
-      }));
-    }
+      const action = a.toggleForm();
+      dispatch(action);
+    };
   }
+  //   if (this.state.selectedSurvey != null) {
+  //     this.setState({
+  //       formVisible: false,
+  //       selectedSurvey: null,
+  //       editing: false
+  //     });
+  //   } else {
+  //     this.setState(prevState => ({
+  //       formVisible: !prevState.formVisible,
+  //     }));
+  //   }
+  // }
 
   // Adding Survey
   handleAddingNewSurveyToList = (newSurvey) => {
-    const newMasterSurveyList = this.state.masterSurveyList.concat(newSurvey);
-    this.setState({masterSurveyList: newMasterSurveyList,
-                  formVisible: false });
+    const { dispatch } = this.props;
+    const action = a.addSurvey(newSurvey); 
+    dispatch(action);
+    const action2 = a.toggleForm();
+    dispatch(action2);
   }
+  //   const newMasterSurveyList = this.state.masterSurveyList.concat(newSurvey);
+  //   this.setState({masterSurveyList: newMasterSurveyList,
+  //                 formVisible: false });
+  // }
 
   // Reading Individual Survey
   handleChangingSelectedSurvey = (id) => {
-    const selectedSurvey = this.state.masterSurveyList.filter(survey => survey.id === id)[0];
-    this.setState({selectedSurvey: selectedSurvey});
+    const { dispatch } = this.props;
+    const selectedSurvey = this.props.masterSurveyList[id];
+    const action = a.selectSurvey(selectedSurvey);
+    dispatch(action);
   }
+  //   const selectedSurvey = this.state.masterSurveyList.filter(survey => survey.id === id)[0];
+  //   this.setState({selectedSurvey: selectedSurvey});
+  // }
 
   // Updating Survey
   handleEditClick = () => {
-    this.setState({editing: true});
+    const { dispatch } = this.props;
+    const action = a.toggleEditing();
+    dispatch(action);
   }
+  //   this.setState({editing: true});
+  // }
 
   handleEditingSurveyInList = (surveyToEdit) => {
-    const editedMasterSurveyList = this.state.masterSurveyList
-      .filter(survey => survey.id !== this.state.selectedSurvey.id)
-      .concat(surveyToEdit);
-    this.setState({
-        masterSurveyList: editedMasterSurveyList,
-        editing: false,
-        selectedSurvey: null
-      });
+    const { dispatch } = this.props;
+    const action  = a.addSurvey(surveyToEdit);
+    dispatch(action);
+    const action2 = a.resetSurvey();
+    dispatch(action2);
+    const action3 = a.toggleEditing();
+    dispatch(action3);
   }
+  //   const editedMasterSurveyList = this.state.masterSurveyList
+  //     .filter(survey => survey.id !== this.state.selectedSurvey.id)
+  //     .concat(surveyToEdit);
+  //   this.setState({
+  //       masterSurveyList: editedMasterSurveyList,
+  //       editing: false,
+  //       selectedSurvey: null
+  //     });
+  // }
 
   // Deleting Survey
   handleDeletingSurvey = (id) => {
-    const newMasterSurveyList = this.state.masterSurveyList.filter(survey=> survey.id !== id);
-    this.setState({
-      masterSurveyList: newMasterSurveyList,
-      selectedSurvey: null
-    });
+    const { dispatch } = this.props;
+    const action  = a.deleteSurvey(id);
+    dispatch(action);
+    const action2 = a.resetSurvey();
+    dispatch(action2);
   }
+  //   const newMasterSurveyList = this.state.masterSurveyList.filter(survey=> survey.id !== id);
+  //   this.setState({
+  //     masterSurveyList: newMasterSurveyList,
+  //     selectedSurvey: null
+  //   });
+  // }
 
 
-  render(){
+  render() {
     let currentlyVisibleState = null;
     let buttonText = null;
 
-  if (this.state.editing) {
+  if (this.props.editing) {
     currentlyVisibleState = 
       <EditSurveyForm 
-        survey={this.state.selectedSurvey} 
+        survey={this.props.selectedSurvey} 
         onEditSurvey={this.handleEditingSurveyInList} 
       />
     buttonText = "Return to Survey List";
 
-  } else if (this.state.selectedSurvey != null){
+  } else if (this.props.selectedSurvey != null){
       currentlyVisibleState = 
         <SurveyDetail 
-          survey = {this.state.selectedSurvey} 
+          survey = {this.props.selectedSurvey} 
           onClickingDelete = {this.handleDeletingSurvey}
           onClickingEdit = {this.handleEditClick} 
         />
       buttonText= "Return to Survey List";
 
-    } else if (this.state.formVisible) {
+    } else if (this.props.formVisible) {
       currentlyVisibleState = 
         <NewSurveyForm 
           onNewSurveyCreation={this.handleAddingNewSurveyToList}
@@ -101,7 +145,7 @@ class SurveyControl extends Component {
     } else {
       currentlyVisibleState = 
         <SurveyList 
-          surveyList={this.state.masterSurveyList} 
+          surveyList={this.props.masterSurveyList} 
           onSurveySelection={this.handleChangingSelectedSurvey}
         />;
       buttonText = "Add Survey";
