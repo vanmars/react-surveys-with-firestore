@@ -97,7 +97,7 @@ class SurveyControl extends Component {
     } else {
       currentlyVisibleState = 
         <SurveyList 
-          surveyList={this.props.masterSurveyList} 
+          // surveyList={this.props.masterSurveyList} 
           onSurveySelection={this.handleChangingSelectedSurvey}
         />;
       buttonText = "Add Survey";
