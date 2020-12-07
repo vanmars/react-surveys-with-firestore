@@ -11,7 +11,7 @@ class SurveyControl extends Component {
       masterSurveyList: {},
       formVisible: false,
       selectedSurvey: null,
-      editing: true
+      editing: false
     };
   }
 
