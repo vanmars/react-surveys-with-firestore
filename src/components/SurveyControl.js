@@ -8,7 +8,7 @@ class SurveyControl extends Component {
   constructor(props){
     super(props);
     this.state = {
-      masterSurveyList: {},
+      masterSurveyList: [],
       formVisible: false,
       selectedSurvey: null,
       editing: false
@@ -48,14 +48,14 @@ class SurveyControl extends Component {
     this.setState({editing: true});
   }
 
-  handleEditingTicketInList = (surveyToEdit) => {
-    const editedMasterSurveyList = this.state.mastersurveyList
+  handleEditingSurveyInList = (surveyToEdit) => {
+    const editedMasterSurveyList = this.state.masterSurveyList
       .filter(survey => survey.id !== this.state.selectedSurvey.id)
       .concat(surveyToEdit);
     this.setState({
         masterSurveyList: editedMasterSurveyList,
         editing: false,
-        selectedTicket: null
+        selectedSurvey: null
       });
   }
 
@@ -64,7 +64,7 @@ class SurveyControl extends Component {
     const newMasterSurveyList = this.state.masterSurveyList.filter(survey=> survey.id !== id);
     this.setState({
       masterSurveyList: newMasterSurveyList,
-      selectedTicket: null
+      selectedSurvey: null
     });
   }
 

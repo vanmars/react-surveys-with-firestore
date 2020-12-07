@@ -11,13 +11,15 @@ function SurveyList(props) {
       <Survey
         whenSurveyClicked = { props.onSurveySelection }
         name={survey.name}
-        description={survey.descrption}
+        description={survey.description}
         question1={survey.question1}
         question2={survey.question2}
         question3={survey.question3}
         question4={survey.question4}
         id={survey.id}
-        key={survey.id}/>
+        key={survey.id}
+      />
+      
      )}
     </React.Fragment>
   );

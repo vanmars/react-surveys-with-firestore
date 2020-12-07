@@ -3,13 +3,20 @@ import PropTypes from 'prop-types';
 
 function SurveyDetail(props) {
   const { survey, onClickingDelete, onClickingEdit } = props;
+
+  function handleSurveyFormSubmission(event) {
+    event.preventDefault();
+    document.getElementById("responseForm").reset();
+    alert('Survey successfully submitted! Submit the survey again or return the the survey list. ')
+  }
+
   return (
     <React.Fragment>
       <h1>Survey Detail</h1>
       <h3>{survey.name}</h3>
       <h6>{survey.description}</h6>
 
-      <form>
+      <form id="responseForm" onSubmit={handleSurveyFormSubmission}>
         <label htmlFor='response1'>{survey.question1}</label>
         <textarea name='response1' type='text' placeholder='Enter your response here.'
         />
