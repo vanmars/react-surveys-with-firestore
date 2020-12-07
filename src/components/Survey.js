@@ -7,10 +7,6 @@ function Survey(props){
       <div onClick = {() => props.whenSurveyClicked(props.id)}>
         <h3>{props.name}</h3>
         <h6>{props.description}</h6>
-        <p><em>{props.question1}</em></p>
-        <p><em>{props.question2}</em></p>
-        <p><em>{props.question3}</em></p>
-        <p><em>{props.question4}</em></p>
       </div>
     </React.Fragment>
   );
