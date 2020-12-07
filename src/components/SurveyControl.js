@@ -6,6 +6,8 @@ import SurveyDetail from './SurveyDetail';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as a from '../actions';
+import { withFirestore } from 'react-redux-firebase'
+
 
 class SurveyControl extends Component {
   // Handle Main Button Click
@@ -33,10 +35,21 @@ class SurveyControl extends Component {
 
   // Reading Individual Survey
   handleChangingSelectedSurvey = (id) => {
-    const { dispatch } = this.props;
-    const selectedSurvey = this.props.masterSurveyList[id];
-    const action = a.selectSurvey(selectedSurvey);
-    dispatch(action);
+    this.props.firestore.get({collection: 'surveys', doc: id}).then((survey) => {
+      const firestoreSurvey = {
+        name: survey.get("name"),
+        description: survey.get("description"),
+        question1: survey.get("question1"),
+        question2: survey.get("question2"),
+        question3: survey.get("question3"),
+        question4: survey.get("question4"),
+        id: survey.id
+      }
+      const { dispatch } = this.props;
+      const selectedSurvey = firestoreSurvey;
+      const action = a.selectSurvey(selectedSurvey);
+      dispatch(action);
+    });
   }
 
   // Updating Survey
@@ -114,7 +127,7 @@ class SurveyControl extends Component {
 
 const mapStateToProps = state => {
   return {
-    masterSurveyList: state.masterSurveyList,
+    // masterSurveyList: state.masterSurveyList,
     formVisible: state.formVisible,
     selectedSurvey: state.selectedSurvey,
     editing: state.editing
@@ -130,4 +143,4 @@ SurveyControl.propTypes = {
 
 SurveyControl = connect(mapStateToProps)(SurveyControl);
 
-export default SurveyControl;
+export default withFirestore(SurveyControl);
