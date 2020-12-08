@@ -23,10 +23,10 @@ const rrfProps = {
 }
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
-    </ReactReduxFirebaseProvider>
-  </Provider>,
+    <Provider store={store}>
+      <ReactReduxFirebaseProvider {...rrfProps}>
+          <App />
+      </ReactReduxFirebaseProvider>
+    </Provider>,
   document.getElementById('root')
 );

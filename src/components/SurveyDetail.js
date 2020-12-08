@@ -25,8 +25,10 @@ function SurveyDetail(props) {
 
  let updateAndDeleteButtons = null;
  const creatorId =  firestore.get({collection: 'surveys', doc: survey.id}).then(survey => survey.get('creatorId'));
-//  console.log("Current user id: ", firebase.auth().currentUser.uid  )
+ console.log("Current user id: ", firebase.auth().currentUser.uid  )
 //  console.log("Survey creator id: ", firestore.get({collection: 'surveys', doc: survey.id}).then(survey => survey.get('creatorId')))
+  console.log("Survey creator id: ", creatorId)
+  console.log(survey.timeOpen);
 
  if (firebase.auth().currentUser.uid === creatorId){
    updateAndDeleteButtons = 
