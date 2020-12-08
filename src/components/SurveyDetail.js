@@ -1,13 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useFirestore } from 'react-redux-firebase';
+import firebase from 'firebase/app';
 
 function SurveyDetail(props) {
   const { survey, onClickingDelete, onClickingEdit } = props;
+  const firestore = useFirestore();
 
-  function handleSurveyFormSubmission(event) {
+  function handleSurveyResponse(event) {
     event.preventDefault();
+    const surveyResponse = {
+      response1: event.target.response1.value,
+      response2: event.target.response2.value,
+      response3: event.target.response3.value,
+      response4: event.target.response4.value,
+      surveyId: survey.id,
+      respondentId: firebase.auth().currentUser.uid
+    }
     document.getElementById("responseForm").reset();
     alert('Survey successfully submitted! Submit the survey again or return the the survey list. ')
+    console.log("User id who completed the survey: ", firebase.auth().currentUser.uid);
+    return firestore.collection('completedSurveys').add(surveyResponse);
   }
 
   return (
@@ -16,7 +29,7 @@ function SurveyDetail(props) {
       <h3>{survey.name}</h3>
       <h6>{survey.description}</h6>
 
-      <form id="responseForm" onSubmit={handleSurveyFormSubmission}>
+      <form id="responseForm" onSubmit={handleSurveyResponse}>
         <label htmlFor='response1'>{survey.question1}</label>
         <textarea name='response1' type='text' placeholder='Enter your response here.'
         />
