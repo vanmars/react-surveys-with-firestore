@@ -61,12 +61,10 @@ class SurveyControl extends Component {
 
   handleEditingSurveyInList = (surveyToEdit) => {
     const { dispatch } = this.props;
-    const action  = a.addSurvey(surveyToEdit);
+    const action = a.resetSurvey();
     dispatch(action);
-    const action2 = a.resetSurvey();
+    const action2 = a.toggleEditing();
     dispatch(action2);
-    const action3 = a.toggleEditing();
-    dispatch(action3);
   }
 
   // Deleting Survey
@@ -77,7 +75,6 @@ class SurveyControl extends Component {
     const action2 = a.resetSurvey();
     dispatch(action2);
   }
-
 
   render() {
     let currentlyVisibleState = null;
