@@ -6,7 +6,7 @@ import SurveyDetail from './SurveyDetail';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as a from '../actions';
-import { withFirestore } from 'react-redux-firebase'
+import { withFirestore, isLoaded } from 'react-redux-firebase'
 
 
 class SurveyControl extends Component {
@@ -79,22 +79,22 @@ class SurveyControl extends Component {
     let currentlyVisibleState = null;
     let buttonText = null;
 
-  if (this.props.editing) {
-    currentlyVisibleState = 
-      <EditSurveyForm 
-        survey={this.props.selectedSurvey} 
-        onEditSurvey={this.handleEditingSurveyInList} 
-      />
-    buttonText = "Return to Survey List";
-
-  } else if (this.props.selectedSurvey != null){
+    if (this.props.editing) {
       currentlyVisibleState = 
-        <SurveyDetail 
-          survey = {this.props.selectedSurvey} 
-          onClickingDelete = {this.handleDeletingSurvey}
-          onClickingEdit = {this.handleEditClick} 
+        <EditSurveyForm 
+          survey={this.props.selectedSurvey} 
+          onEditSurvey={this.handleEditingSurveyInList} 
         />
-      buttonText= "Return to Survey List";
+      buttonText = "Return to Survey List";
+
+    } else if (this.props.selectedSurvey != null){
+        currentlyVisibleState = 
+          <SurveyDetail 
+            survey = {this.props.selectedSurvey} 
+            onClickingDelete = {this.handleDeletingSurvey}
+            onClickingEdit = {this.handleEditClick} 
+          />
+        buttonText= "Return to Survey List";
 
     } else if (this.props.formVisible) {
       currentlyVisibleState = 
@@ -111,13 +111,30 @@ class SurveyControl extends Component {
       buttonText = "Add Survey";
     };
 
-    return (
-      <React.Fragment>
-        {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
-      </React.Fragment>
-    );
-  }
+    const auth = this.props.firebase.auth();
+    if(!isLoaded(auth)) {
+      return (
+        <React.Fragment>
+          <h1>Loading . . .</h1>
+        </React.Fragment>
+      );
+    };
+    if(isLoaded(auth) && auth.currentUser == null) {
+      return (
+        <React.Fragment>
+          <h1>You must be signed in to access the Survey List.</h1>
+        </React.Fragment>
+      );
+    };
+    if(isLoaded(auth) && auth.currentUser != null) {
+      return (
+        <React.Fragment>
+          {currentlyVisibleState}
+          <button onClick={this.handleClick}>{buttonText}</button>
+        </React.Fragment>
+      );
+    };
+  };
 }
 
 const mapStateToProps = state => {

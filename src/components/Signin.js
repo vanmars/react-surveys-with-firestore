@@ -34,7 +34,7 @@ function Signin(event){
   function doSignout(event) {
     firebase.auth().signOut().then(function(){
       console.log('Successfully logged out!');
-      alert('You\'ve successfully signed out! Goodbye')
+      alert('You\'ve successfully signed out! Goodbye!')
     }).catch(function(error){
       console.log(error.message);
     });
