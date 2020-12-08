@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import SurveyControl from './SurveyControl';
-import Sigin from './Signin';
+import Signin from './Signin';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -9,8 +9,8 @@ function App() {
     <Router>
       <Header />
       <Switch>
-        <Route path='/sigin'>
-          <Sigin />
+        <Route path='/signin'>
+          <Signin />
         </Route>
         <Route path='/'>
           <SurveyControl />
