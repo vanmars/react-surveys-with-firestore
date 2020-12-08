@@ -23,6 +23,20 @@ function SurveyDetail(props) {
     return firestore.collection('completedSurveys').add(surveyResponse);
   }
 
+ let updateAndDeleteButtons = null;
+ const creatorId =  firestore.get({collection: 'surveys', doc: survey.id}).then(survey => survey.get('creatorId'));
+//  console.log("Current user id: ", firebase.auth().currentUser.uid  )
+//  console.log("Survey creator id: ", firestore.get({collection: 'surveys', doc: survey.id}).then(survey => survey.get('creatorId')))
+
+ if (firebase.auth().currentUser.uid === creatorId){
+   updateAndDeleteButtons = 
+   <div> 
+    <button onClick={ onClickingEdit }>Update Survey</button>
+    <button onClick={()=> onClickingDelete(survey.id) }>Close Survey</button>
+  </div>  
+  } 
+
+
   return (
     <React.Fragment>
       <h1>Survey Detail</h1>
@@ -31,28 +45,21 @@ function SurveyDetail(props) {
 
       <form id="responseForm" onSubmit={handleSurveyResponse}>
         <label htmlFor='response1'>{survey.question1}</label>
-        <textarea name='response1' type='text' placeholder='Enter your response here.'
-        />
+        <textarea name='response1' type='text' placeholder='Enter your response here.' />
 
         <label htmlFor='response2'>{survey.question2}</label>
-        <textarea name='response2' type='text' placeholder='Enter your response here.'
-        />
+        <textarea name='response2' type='text' placeholder='Enter your response here.' />
 
         <label htmlFor='response3'>{survey.question3}</label>
-        <textarea name='response3' type='text' placeholder='Enter your response here.'
-        />
+        <textarea name='response3' type='text' placeholder='Enter your response here.' />
 
         <label htmlFor='response4'>{survey.question4}</label>
-        <textarea name='response4' type='text' placeholder='Enter your response here.'
-        />
+        <textarea name='response4' type='text' placeholder='Enter your response here.' />
   
         <button type='submit'>Submit</button> 
       </form>
-
       <hr />
-      <button onClick={ onClickingEdit }>Update Survey</button>
-      <button onClick={()=> onClickingDelete(survey.id) }>Close Survey</button>
-
+      {updateAndDeleteButtons}
     </React.Fragment>
   );
 }

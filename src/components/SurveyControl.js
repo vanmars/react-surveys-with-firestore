@@ -43,6 +43,8 @@ class SurveyControl extends Component {
         question2: survey.get("question2"),
         question3: survey.get("question3"),
         question4: survey.get("question4"),
+        timeOpen: survey.get("timeOpen"),
+        creatorId: survey.get("creatorId"),
         id: survey.id
       }
       const { dispatch } = this.props;
