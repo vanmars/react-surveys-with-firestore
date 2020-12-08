@@ -71,10 +71,8 @@ class SurveyControl extends Component {
   handleDeletingSurvey = (id) => {
     this.props.firestore.delete({collection: 'surveys', doc: id})
     const { dispatch } = this.props;
-    // const action  = a.deleteSurvey(id);
-    // dispatch(action);
-    const action2 = a.resetSurvey();
-    dispatch(action2);
+    const action = a.resetSurvey();
+    dispatch(action);
   }
 
   render() {
@@ -108,7 +106,6 @@ class SurveyControl extends Component {
     } else {
       currentlyVisibleState = 
         <SurveyList 
-          // surveyList={this.props.masterSurveyList} 
           onSurveySelection={this.handleChangingSelectedSurvey}
         />;
       buttonText = "Add Survey";
@@ -125,7 +122,6 @@ class SurveyControl extends Component {
 
 const mapStateToProps = state => {
   return {
-    // masterSurveyList: state.masterSurveyList,
     formVisible: state.formVisible,
     selectedSurvey: state.selectedSurvey,
     editing: state.editing
@@ -133,7 +129,7 @@ const mapStateToProps = state => {
 }
 
 SurveyControl.propTypes = {
-  masterSurveyList: PropTypes.object,
+  // masterSurveyList: PropTypes.object,
   formVisible: PropTypes.bool,
   selectedSurvey: PropTypes.object,
   editing: PropTypes.bool
