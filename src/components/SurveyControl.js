@@ -69,9 +69,10 @@ class SurveyControl extends Component {
 
   // Deleting Survey
   handleDeletingSurvey = (id) => {
+    this.props.firestore.delete({collection: 'surveys', doc: id})
     const { dispatch } = this.props;
-    const action  = a.deleteSurvey(id);
-    dispatch(action);
+    // const action  = a.deleteSurvey(id);
+    // dispatch(action);
     const action2 = a.resetSurvey();
     dispatch(action2);
   }
