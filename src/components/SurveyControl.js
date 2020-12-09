@@ -33,17 +33,19 @@ const Button = styled.button`
 const SurveysHeader = styled.h1`
   font-size: 28px;
   margin: 2em auto 0;
+  text-align: center;
 `;
 
 const SurveysParagraph = styled.p`
   font-size: 16px;
   margin: 1em auto 0;
+  text-align: center;
 `;
 
 const Image = styled.img`
-  width: 50vw;
-  height: auto;
-  margin: 0 auto;
+  width: 100vw;
+  height: 90vh;
+  margin-left: -2em;
 `;
 
 class SurveyControl extends Component {
@@ -173,12 +175,17 @@ class SurveyControl extends Component {
     };
     if(isLoaded(auth) && auth.currentUser != null) {
       return (
+        <React.Fragment>
           <Wrapper>
             {currentlyVisibleState}
             <br />
             <Button onClick={this.handleClick}>{buttonText}</Button>
-            <img src='./public/survey.jpg' />
+            <div className="flex d-flex justify-content-center">
+              
+            </div>
          </Wrapper>
+         <Image src='survey.jpg'></Image>
+      </React.Fragment>
       );
     };
   };

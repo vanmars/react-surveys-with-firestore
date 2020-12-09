@@ -21,6 +21,11 @@ const DashboardSubHeader = styled.h2`
   font-size: 22px;
 `;
 
+const Image = styled.img`
+  width: 25vw;
+  height: auto;
+  margin: 0 auto;
+`;
 
 function Dashboard() {
   const auth = firebase.auth();
@@ -34,6 +39,8 @@ function Dashboard() {
     return (
       <Wrapper>
         <DashboardHeader>Loading . . .</DashboardHeader>
+        <br />
+        <Image src='survey.jpg'></Image>
       </Wrapper>
     );
   };
@@ -42,6 +49,8 @@ function Dashboard() {
     return (
       <Wrapper>
         <DashboardHeader>You must be signed in to access the Survey List.</DashboardHeader>
+        <br />
+        <Image src='survey.jpg'></Image>
       </Wrapper>
     );
   };
@@ -63,13 +72,13 @@ function Dashboard() {
         <React.Fragment>
           <div className="p-4">
           <h1>Dashboard</h1>
+          <br />
+          <Image src='survey.jpg'></Image>
           <hr />
           <h2>My Surveys</h2>
         </div>
         </React.Fragment>
     );
-   
-   
   };
 }
 
