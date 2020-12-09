@@ -7,5 +7,7 @@ html {
 }
 
 body {
-  background-color: papayawhip;
+  /* background-color: #011936; */
+  overflow-x: hidden;
+  color: #011936;
 }
