@@ -48,6 +48,9 @@ _Connect with me at vamariestewart@gmail.com with ideas to improve this project.
 * Webpack
 * NPM
 
+## Vector Art Credits
+<a href="https://www.vecteezy.com/free-vector/woman">Woman Vectors by Vecteezy</a>
+
 ### License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
