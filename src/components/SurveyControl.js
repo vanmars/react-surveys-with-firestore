@@ -10,21 +10,19 @@ import { withFirestore, isLoaded } from 'react-redux-firebase'
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  padding: 1em;
+  padding: 0 2em;
 `;
 
 const Button = styled.button`
   font-size: 1em;
   font-weight: bolder;
-  margin: 1em auto;
+  margin: 0 auto;
   padding: 0.5em 1em;
   border: solid 2px #011936;
   border-radius: 5px;
   color: white;
   background-color: #011936;
-  max-width: 15%;
+  max-width: 50%;
 
   &:hover {
     color: #011936;
@@ -40,6 +38,12 @@ const SurveysHeader = styled.h1`
 const SurveysParagraph = styled.p`
   font-size: 16px;
   margin: 1em auto 0;
+`;
+
+const Image = styled.img`
+  width: 50vw;
+  height: auto;
+  margin: 0 auto;
 `;
 
 class SurveyControl extends Component {
@@ -152,24 +156,29 @@ class SurveyControl extends Component {
       return (
         <Wrapper>
           <SurveysHeader>Loading . . .</SurveysHeader>
+          <br />
+          <Image src='survey.jpg'></Image>
         </Wrapper>
       );
     };
     if(isLoaded(auth) && auth.currentUser == null) {
       return (
         <Wrapper>
-          <SurveysHeader>You must be signed in to access the Survey List.</SurveysHeader>
+          <SurveysHeader>Welcome to the Survey Generator!</SurveysHeader>
+          <SurveysParagraph>Sign in to access the Survey List.</SurveysParagraph>
+          <br />
+          <Image src='survey.jpg'></Image>
         </Wrapper>
       );
     };
     if(isLoaded(auth) && auth.currentUser != null) {
       return (
-        <Wrapper>
-          {/* <SurveysHeader>Survey List</SurveysHeader>
-          <SurveysParagraph>Click on a survey below to enter your response!</SurveysParagraph> */}
-          <Button onClick={this.handleClick}>{buttonText}</Button>
-          {currentlyVisibleState}
-        </Wrapper>
+          <Wrapper>
+            {currentlyVisibleState}
+            <br />
+            <Button onClick={this.handleClick}>{buttonText}</Button>
+            <img src='./public/survey.jpg' />
+         </Wrapper>
       );
     };
   };

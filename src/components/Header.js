@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 const NavWrapper = styled.nav`
   background-color: #011936;
-  padding: 0 2em;
-  margin: -1em;
+  padding: 1em 2em 0;
   display: flex;
   align-items: baseline;
   color: white;

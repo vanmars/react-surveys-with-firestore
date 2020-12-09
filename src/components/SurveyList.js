@@ -5,8 +5,14 @@ import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded } from 'react-redux-firebase'
 import styled from 'styled-components';
 
-const Wrapper = styled.section`
-  padding: 4em;
+const SurveysHeader = styled.h1`
+  font-size: 32px;
+  margin: 2em auto 0;
+`;
+
+const SurveysParagraph = styled.p`
+  font-size: 16px;
+  margin: 1em auto 0;
 `;
 
 function SurveyList(props) {
@@ -22,7 +28,10 @@ function SurveyList(props) {
   if (isLoaded(surveys)) {
     return (
       <React.Fragment>
-        <Wrapper>
+        
+          <SurveysHeader>Survey List</SurveysHeader>
+          <SurveysParagraph>Click on a survey below to enter your response!</SurveysParagraph>
+          <hr />
           {surveys.map((survey) => 
             <Survey
               whenSurveyClicked = { props.onSurveySelection }
@@ -36,7 +45,7 @@ function SurveyList(props) {
               key={survey.id}
             />
           )}
-        </Wrapper>
+       
       </React.Fragment>
     );
   } else {

@@ -3,6 +3,7 @@
 _7 December 2020_
 
 #### _Website for making and taking surveys_
+<img src='public/survey.jpg' />
 
 #### By _**Vanessa Stewart**_
 
