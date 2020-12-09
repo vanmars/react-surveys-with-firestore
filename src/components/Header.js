@@ -18,6 +18,7 @@ const HomeLink = styled.div`
     color: #C1AE7C;
     text-decoration: none;
     margin-right: 1em;
+    font-size: 1em;
   }
 
   & > a:hover {
@@ -30,11 +31,15 @@ const SigninLink = styled(HomeLink)`
   margin-right: 0;
 `;
 
+const BrandName = styled.h1`
+  font-size: 1.5em;
+`;
+
 function Header() {
   return (
     <React.Fragment>
       <NavWrapper>
-        <h1>Survey Generator</h1>
+        <BrandName>Survey Generator</BrandName>
         <HomeLink>
           <NavLink to='/' activeClassName="active">Home</NavLink>
           <NavLink to='/dashboard' activeClassName="active">Dashboard</NavLink>
