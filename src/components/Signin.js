@@ -7,7 +7,6 @@ function Signin(event){
     event.preventDefault()
     const email = event.target.signupEmail.value;
     const password = event.target.signupPassword.value;
-
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
       console.log('Successfully signed up!');
       document.getElementById('signupForm').reset();
@@ -21,7 +20,6 @@ function Signin(event){
     event.preventDefault()
     const email = event.target.signinEmail.value;
     const password = event.target.signinPassword.value;
-
     firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
       console.log('Successfully signed in!');
       document.getElementById('signinForm').reset();
@@ -39,7 +37,6 @@ function Signin(event){
       console.log(error.message);
     });
   }
-
  
   return (
     <React.Fragment>

@@ -24,7 +24,7 @@ function SurveyDetail(props) {
 
   let updateAndDeleteButtons = null;
 
-  if (firebase.auth().currentUser.uid == survey.creatorId){
+  if (firebase.auth().currentUser.uid === survey.creatorId){
     updateAndDeleteButtons = 
       <div> 
         <button onClick={ onClickingEdit }>Update Survey</button>

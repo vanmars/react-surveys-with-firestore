@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavWrapper = styled.nav`
@@ -12,12 +12,13 @@ const NavWrapper = styled.nav`
 `;
 
 const HomeLink = styled.div`
-  margin-left: 1em;
+  margin-left: 2em;
   margin-right: auto;
 
   & > a {
     color: #C1AE7C;
     text-decoration: none;
+    margin-right: 1em;
   }
 
   & > a:hover {
@@ -36,7 +37,8 @@ function Header() {
       <NavWrapper>
         <h1>Survey Generator</h1>
         <HomeLink>
-          <Link to='/'>Home</Link>
+          <NavLink to='/' activeClassName="active">Home</NavLink>
+          <NavLink to='/dashboard' activeClassName="active">Dashboard</NavLink>
         </HomeLink>
         <SigninLink>
           <Link to='/signin'>Sign In</Link>

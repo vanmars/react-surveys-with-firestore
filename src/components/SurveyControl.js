@@ -165,8 +165,8 @@ class SurveyControl extends Component {
     if(isLoaded(auth) && auth.currentUser != null) {
       return (
         <Wrapper>
-          <SurveysHeader>Survey List</SurveysHeader>
-          <SurveysParagraph>Click on a survey below to enter your response!</SurveysParagraph>
+          {/* <SurveysHeader>Survey List</SurveysHeader>
+          <SurveysParagraph>Click on a survey below to enter your response!</SurveysParagraph> */}
           <Button onClick={this.handleClick}>{buttonText}</Button>
           {currentlyVisibleState}
         </Wrapper>
