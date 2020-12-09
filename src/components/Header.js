@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavWrapper = styled.nav`
-  background-color: #DA2C38;
+  background-color: #011936;
   padding: 0 2em;
-  margin: 0 -1em;
+  margin: -1em;
   display: flex;
   align-items: baseline;
   color: white;
@@ -14,21 +14,20 @@ const NavWrapper = styled.nav`
 const HomeLink = styled.div`
   margin-left: 1em;
   margin-right: auto;
-  
+
   & > a {
-    color: 011936;
+    color: #C1AE7C;
     text-decoration: none;
   }
 
   & > a:hover {
-    color: #F9DC5C;
+    color: #CC4BC2;
   }
 `;
 
 const SigninLink = styled(HomeLink)`
   margin-left: auto;
   margin-right: 0;
-
 `;
 
 function Header() {
@@ -40,7 +39,7 @@ function Header() {
           <Link to='/'>Home</Link>
         </HomeLink>
         <SigninLink>
-          <Link to='/signin'>Sign In/Sign Out</Link>
+          <Link to='/signin'>Sign In</Link>
         </SigninLink>
       </NavWrapper>
     </React.Fragment>

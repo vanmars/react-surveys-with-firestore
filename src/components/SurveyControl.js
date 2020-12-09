@@ -7,7 +7,40 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as a from '../actions';
 import { withFirestore, isLoaded } from 'react-redux-firebase'
+import styled from 'styled-components';
 
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+`;
+
+const Button = styled.button`
+  font-size: 1em;
+  font-weight: bolder;
+  margin: 1em auto;
+  padding: 0.5em 1em;
+  border: solid 2px #011936;
+  border-radius: 5px;
+  color: white;
+  background-color: #011936;
+  max-width: 15%;
+
+  &:hover {
+    color: #011936;
+    background-color: white;
+  }
+`;
+
+const SurveysHeader = styled.h1`
+  font-size: 28px;
+  margin: 2em auto 0;
+`;
+
+const SurveysParagraph = styled.p`
+  font-size: 16px;
+  margin: 1em auto 0;
+`;
 
 class SurveyControl extends Component {
   // Handle Main Button Click
@@ -113,27 +146,30 @@ class SurveyControl extends Component {
       buttonText = "Add Survey";
     };
 
+    // RETURNS
     const auth = this.props.firebase.auth();
     if(!isLoaded(auth)) {
       return (
-        <React.Fragment>
-          <h1>Loading . . .</h1>
-        </React.Fragment>
+        <Wrapper>
+          <SurveysHeader>Loading . . .</SurveysHeader>
+        </Wrapper>
       );
     };
     if(isLoaded(auth) && auth.currentUser == null) {
       return (
-        <React.Fragment>
-          <h1>You must be signed in to access the Survey List.</h1>
-        </React.Fragment>
+        <Wrapper>
+          <SurveysHeader>You must be signed in to access the Survey List.</SurveysHeader>
+        </Wrapper>
       );
     };
     if(isLoaded(auth) && auth.currentUser != null) {
       return (
-        <React.Fragment>
+        <Wrapper>
+          <SurveysHeader>Survey List</SurveysHeader>
+          <SurveysParagraph>Click on a survey below to enter your response!</SurveysParagraph>
+          <Button onClick={this.handleClick}>{buttonText}</Button>
           {currentlyVisibleState}
-          <button onClick={this.handleClick}>{buttonText}</button>
-        </React.Fragment>
+        </Wrapper>
       );
     };
   };
@@ -148,7 +184,6 @@ const mapStateToProps = state => {
 }
 
 SurveyControl.propTypes = {
-  // masterSurveyList: PropTypes.object,
   formVisible: PropTypes.bool,
   selectedSurvey: PropTypes.object,
   editing: PropTypes.bool
