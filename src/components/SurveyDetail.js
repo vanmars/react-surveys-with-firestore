@@ -22,22 +22,15 @@ function SurveyDetail(props) {
     return firestore.collection('completedSurveys').add(surveyResponse);
   }
 
- let updateAndDeleteButtons = null;
+  let updateAndDeleteButtons = null;
 
-  // console.log("Current user id: ", firebase.auth().currentUser.uid  )
-  // console.log("Survey creator id: ", firestore.get({collection: 'surveys', doc: survey.id}).then(survey => survey.get('creatorId')))
-  // console.log("Survey creator id: ", creatorId)
-  console.log(survey.timeOpen);
-  console.log(survey.creatorId)
-
- if (firebase.auth().currentUser.uid == survey.creatorId){
-   updateAndDeleteButtons = 
-    <div> 
-      <button onClick={ onClickingEdit }>Update Survey</button>
-      <button onClick={()=> onClickingDelete(survey.id) }>Close Survey</button>
-    </div> 
+  if (firebase.auth().currentUser.uid == survey.creatorId){
+    updateAndDeleteButtons = 
+      <div> 
+        <button onClick={ onClickingEdit }>Update Survey</button>
+        <button onClick={()=> onClickingDelete(survey.id) }>Close Survey</button>
+      </div> 
   }  
-
 
   return (
     <React.Fragment>
@@ -61,7 +54,9 @@ function SurveyDetail(props) {
         <button type='submit'>Submit</button> 
       </form>
       <hr />
+
       {updateAndDeleteButtons}
+      
     </React.Fragment>
   );
 }
