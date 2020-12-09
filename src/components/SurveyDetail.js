@@ -19,24 +19,24 @@ function SurveyDetail(props) {
     }
     document.getElementById("responseForm").reset();
     alert('Survey successfully submitted! Submit the survey again or return the the survey list. ')
-    console.log("User id who completed the survey: ", firebase.auth().currentUser.uid);
     return firestore.collection('completedSurveys').add(surveyResponse);
   }
 
  let updateAndDeleteButtons = null;
- const creatorId =  firestore.get({collection: 'surveys', doc: survey.id}).then(survey => survey.get('creatorId'));
- console.log("Current user id: ", firebase.auth().currentUser.uid  )
-//  console.log("Survey creator id: ", firestore.get({collection: 'surveys', doc: survey.id}).then(survey => survey.get('creatorId')))
-  console.log("Survey creator id: ", creatorId)
-  console.log(survey.timeOpen);
 
- if (firebase.auth().currentUser.uid === creatorId){
+  // console.log("Current user id: ", firebase.auth().currentUser.uid  )
+  // console.log("Survey creator id: ", firestore.get({collection: 'surveys', doc: survey.id}).then(survey => survey.get('creatorId')))
+  // console.log("Survey creator id: ", creatorId)
+  console.log(survey.timeOpen);
+  console.log(survey.creatorId)
+
+ if (firebase.auth().currentUser.uid == survey.creatorId){
    updateAndDeleteButtons = 
-   <div> 
-    <button onClick={ onClickingEdit }>Update Survey</button>
-    <button onClick={()=> onClickingDelete(survey.id) }>Close Survey</button>
-  </div>  
-  } 
+    <div> 
+      <button onClick={ onClickingEdit }>Update Survey</button>
+      <button onClick={()=> onClickingDelete(survey.id) }>Close Survey</button>
+    </div> 
+  }  
 
 
   return (

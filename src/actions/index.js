@@ -10,7 +10,7 @@ export const toggleEditing= () => ({
 
 
 export const selectSurvey= (survey) => {
-  const { name, description, question1, question2, question3, question4, id } = survey;
+  const { name, description, question1, question2, question3, question4, timeOpen, creatorId, id } = survey;
   return {
     type: c.SELECT_SURVEY,
     name: name, 
@@ -19,6 +19,8 @@ export const selectSurvey= (survey) => {
     question2: question2,
     question3: question3,
     question4: question4,
+    timeOpen: timeOpen,
+    creatorId: creatorId,
     id: id
   };
 }
