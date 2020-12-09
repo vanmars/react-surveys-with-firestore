@@ -29,14 +29,14 @@ function Signin(event){
     });
   }
 
-  function doSignout(event) {
-    firebase.auth().signOut().then(function(){
-      console.log('Successfully logged out!');
-      alert('You\'ve successfully signed out! Goodbye!')
-    }).catch(function(error){
-      console.log(error.message);
-    });
-  }
+  // function doSignout(event) {
+  //   firebase.auth().signOut().then(function(){
+  //     console.log('Successfully logged out!');
+  //     alert('You\'ve successfully signed out! Goodbye!')
+  //   }).catch(function(error){
+  //     console.log(error.message);
+  //   });
+  // }
  
   return (
     <React.Fragment>
@@ -54,8 +54,8 @@ function Signin(event){
         <button type='submit'>Sign In</button>
       </form>
 
-      <h1>Sign Out</h1>
-      <button onClick={doSignout}>Sign Out</button>
+      {/* <h1>Sign Out</h1>
+      <button onClick={doSignout}>Sign Out</button> */}
 
     </React.Fragment>
   );
