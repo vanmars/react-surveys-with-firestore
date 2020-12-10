@@ -1,7 +1,22 @@
 import React from 'react';
 import firebase from 'firebase/app';
+import styled from 'styled-components';
 
 function Signin(event){  
+
+  const ButtonDark = styled.button`
+    margin: 0;  
+    width: 100px;
+    border-radius: 5px;
+    border: solid 2px #dd5e98;
+    color: white;
+    background-color: #dd5e98;
+
+    &:hover {
+      color: white;
+      background-color: #011936;
+    }
+  `;
 
   function doSignup(event) {
     event.preventDefault()
@@ -28,34 +43,29 @@ function Signin(event){
       console.log(error.message);
     });
   }
-
-  // function doSignout(event) {
-  //   firebase.auth().signOut().then(function(){
-  //     console.log('Successfully logged out!');
-  //     alert('You\'ve successfully signed out! Goodbye!')
-  //   }).catch(function(error){
-  //     console.log(error.message);
-  //   });
-  // }
  
   return (
     <React.Fragment>
-      <h1>Sign Up</h1>
-      <form onSubmit={doSignup} id='signupForm'>
-        <input name='signupEmail' type='text' placeholder='Email' />
-        <input name='signupPassword' type='text' placeholder='Password' />
-        <button type='submit'>Sign Up</button>
-      </form>
+      <div className="row d-flex mt-5 mx-5 justify-content-around">
 
-      <h1>Sign In</h1>
-      <form onSubmit={doSignin} id='signinForm'>
-        <input name='signinEmail' type='text' placeholder='Email' />
-        <input name='signinPassword' type='text' placeholder='Password' />
-        <button type='submit'>Sign In</button>
-      </form>
+        <div className="col-4 card shadow p-4 text-center">
+          <h1 style={{fontSize: 36}}>Sign Up</h1> <br />
+          <form onSubmit={doSignup} id='signupForm'>
+            <input name='signupEmail' type='text' placeholder='Email' class='form-control' /> <br /><br />
+            <input name='signupPassword' type='text' placeholder='Password' class='form-control' /> <br /><br />
+            <ButtonDark type='submit'>Sign Up</ButtonDark>
+          </form>
+        </div>
 
-      {/* <h1>Sign Out</h1>
-      <button onClick={doSignout}>Sign Out</button> */}
+        <div className="col-4 card shadow p-4 text-center">
+          <h1 style={{fontSize: 36}}>Sign In</h1> <br />
+          <form onSubmit={doSignin} id='signinForm'>
+            <input name='signinEmail' type='text' placeholder='Email' class='form-control' /> <br /><br />
+            <input name='signinPassword' type='text' placeholder='Password' class='form-control' /> <br /><br />
+            <ButtonDark type='submit'>Sign In</ButtonDark>
+          </form>
+        </div>
+      </div>
 
     </React.Fragment>
   );
