@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import styled from 'styled-components';
+import { Redirect } from 'react-router';
 
 function Signin(event){  
 
@@ -38,7 +39,8 @@ function Signin(event){
     firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
       console.log('Successfully signed in!');
       document.getElementById('signinForm').reset();
-      alert('Congrats! You\'ve successfully signed in!')
+      alert('Congrats! You\'ve successfully signed in!');
+      <Redirect to='/' />
     }).catch(function(error){
       console.log(error.message);
     });
