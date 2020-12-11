@@ -42,6 +42,11 @@ STRETCH GOALS
 ## :beetle: Known Bugs
 _There are no known bugs at this time. But the following item could be improved:_
 
+* Figure out how to use a redirect to change to home route when user logs in.
+* Combine user sign up and sign in form - seems redundant to have two different forms; make one form with a sign up and a sign in button.
+* Get survey data to display on dashboard
+
+
 ## :mailbox_with_no_mail: Support and Contact Details
 _Connect with me at vamariestewart@gmail.com with ideas to improve this project._
 
